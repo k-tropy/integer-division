@@ -1,44 +1,47 @@
 package ru.bolgov.task4;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DivisionColumn {
-    private Division mainDivision;
-    private ArrayList<Division> listDivisions = new ArrayList<>();
+    private final Division mainDivision;
+    private final List<Division> listDivisions;
 
     public DivisionColumn(Division mainDivision) {
         this.mainDivision = mainDivision;
-        this.createColumn();
+        this.listDivisions = new ArrayList<>(createColumn(mainDivision));
     }
 
     public Division getMainDivision() {
         return mainDivision;
     }
 
-    public ArrayList<Division> getListDivisions() {
+    public List<Division> getListDivisions() {
         return listDivisions;
     }
 
-    private void createColumn() {
-        int intermediateRemainder = this.mainDivision.getX();
-        int y = this.mainDivision.getY();
-        int remainder = this.mainDivision.getRemainder();
+    private List<Division> createColumn(Division mainDivision) {
+        int intermediateRemainder = mainDivision.getX();
+        int y = mainDivision.getY();
+        int remainder = mainDivision.getRemainder();
+        ArrayList<Division> listResult = new ArrayList<>();
 
         while (intermediateRemainder != remainder) {
             int nextDividend = takeNextDivident(intermediateRemainder, y);
             Division d = new Division(nextDividend, y);
-            this.listDivisions.add(d);
+            listResult.add(d);
             intermediateRemainder = takeIntermediateRemainder(intermediateRemainder, d);
         }
+        return listResult;
     }
 
     private int takeNextDivident(int x, int y) {
         int result = 0;
-        String strX = x + "";
+        String xAsString = Integer.toString(x);
         StringBuilder dividendBuilder = new StringBuilder("");
 
-        for (int i = 0; i < strX.length(); i++) {
-            dividendBuilder.append(strX.charAt(i));
+        for (int i = 0; i < xAsString.length(); i++) {
+            dividendBuilder.append(xAsString.charAt(i));
             result = Integer.parseInt(dividendBuilder.toString());
             if (result >= y) {
                 break;
@@ -49,14 +52,13 @@ public class DivisionColumn {
 
     private int takeIntermediateRemainder(int x, Division d) {
 
-        String result = (x + "").substring(lengthInt(d.getX()), lengthInt(x));
+        String result = (Integer.toString(x)).substring(lengthInt(d.getX()), lengthInt(x));
         result = d.getRemainder() + result;
         return Integer.parseInt(result);
     }
 
     private int lengthInt(int x) {
-        String s = x + "";
-        return s.length();
+        return Integer.toString(x).length();
     }
 
 }

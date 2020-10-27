@@ -1,23 +1,23 @@
 package ru.bolgov.task4;
 
 public class Printer {
-    private String result = "";
+    private final String result;
 
     public Printer(Division division) {
         DivisionColumn divisionColumn = new DivisionColumn(division);
-        createResult(divisionColumn);
+        this.result = createResult(divisionColumn);
     }
 
     public String getResult() {
         return result;
     }
 
-    private void createResult(DivisionColumn dc) {
-        result = createFirst(dc) + createSecondThird(dc) + createOtherLines(dc);
+    private String createResult(DivisionColumn dc) {
+        return createFirst(dc) + createSecondThird(dc) + createOtherLines(dc);
     }
 
     private String createFirst(DivisionColumn dc) {
-        return String.format("_%d|%d\n", dc.getMainDivision().getX(), dc.getMainDivision().getY());
+        return String.format("_%d|%d", dc.getMainDivision().getX(), dc.getMainDivision().getY())+"\n";
 
     }
 
@@ -68,7 +68,7 @@ public class Printer {
     }
 
     private int lengthInt(int x) {
-        return (x + "").length();
+        return Integer.toString(x).length();
     }
 
     private int takeIntPart(Division d) {
