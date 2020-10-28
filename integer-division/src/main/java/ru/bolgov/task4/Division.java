@@ -48,8 +48,10 @@ public class Division {
 
     @Override
     public String toString() {
-        Printer print = new Printer(this);
-        return print.getResult();
+        DivisionColumn divisionColumn = new DivisionColumn(this);
+        divisionColumn.createColumn();
+        Printer print = new Printer();
+        return print.createResult(divisionColumn);
     }
 
 }

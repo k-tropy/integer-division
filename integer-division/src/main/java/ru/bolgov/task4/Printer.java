@@ -1,23 +1,13 @@
 package ru.bolgov.task4;
 
 public class Printer {
-    private final String result;
 
-    public Printer(Division division) {
-        DivisionColumn divisionColumn = new DivisionColumn(division);
-        this.result = createResult(divisionColumn);
-    }
-
-    public String getResult() {
-        return result;
-    }
-
-    private String createResult(DivisionColumn dc) {
+    String createResult(DivisionColumn dc) {
         return createFirst(dc) + createSecondThird(dc) + createOtherLines(dc);
     }
 
     private String createFirst(DivisionColumn dc) {
-        return String.format("_%d|%d", dc.getMainDivision().getX(), dc.getMainDivision().getY())+"\n";
+        return String.format("_%d|%d", dc.getMainDivision().getX(), dc.getMainDivision().getY()) + "\n";
 
     }
 

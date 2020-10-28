@@ -9,7 +9,7 @@ public class DivisionColumn {
 
     public DivisionColumn(Division mainDivision) {
         this.mainDivision = mainDivision;
-        this.listDivisions = new ArrayList<>(createColumn(mainDivision));
+        this.listDivisions = new ArrayList<>();
     }
 
     public Division getMainDivision() {
@@ -20,19 +20,18 @@ public class DivisionColumn {
         return listDivisions;
     }
 
-    private List<Division> createColumn(Division mainDivision) {
-        int intermediateRemainder = mainDivision.getX();
-        int y = mainDivision.getY();
-        int remainder = mainDivision.getRemainder();
-        ArrayList<Division> listResult = new ArrayList<>();
+    void createColumn() {
+        int intermediateRemainder = this.mainDivision.getX();
+        int y = this.mainDivision.getY();
+        int remainder = this.mainDivision.getRemainder();
 
         while (intermediateRemainder != remainder) {
             int nextDividend = takeNextDivident(intermediateRemainder, y);
             Division d = new Division(nextDividend, y);
-            listResult.add(d);
+            this.listDivisions.add(d);
             intermediateRemainder = takeIntermediateRemainder(intermediateRemainder, d);
         }
-        return listResult;
+
     }
 
     private int takeNextDivident(int x, int y) {
