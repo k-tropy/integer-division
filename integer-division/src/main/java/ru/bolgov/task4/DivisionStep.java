@@ -1,6 +1,6 @@
 package ru.bolgov.task4;
 
-public class Division {
+public class DivisionStep {
     private int x;
     private int y;
     private int intResult;
@@ -22,7 +22,7 @@ public class Division {
         return remainder;
     }
 
-    public Division(int x, int y) {
+    public DivisionStep(int x, int y) {
         if (0 == y) {
             throw new IllegalArgumentException("Divisor can`t be zero");
         }
@@ -48,10 +48,10 @@ public class Division {
 
     @Override
     public String toString() {
-        DivisionColumn divisionColumn = new DivisionColumn(this);
+        ColumnDivision divisionColumn = new ColumnDivision(this);
         divisionColumn.createColumn();
         Printer print = new Printer();
-        return print.createResult(divisionColumn);
+        return print.buildResultString(divisionColumn);
     }
 
 }

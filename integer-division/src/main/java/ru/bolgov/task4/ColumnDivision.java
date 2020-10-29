@@ -3,31 +3,31 @@ package ru.bolgov.task4;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DivisionColumn {
-    private final Division mainDivision;
-    private final List<Division> listDivisions;
+public class ColumnDivision {
+    private final DivisionStep mainDivision;
+    private final List<DivisionStep> listDivisions;
 
-    public DivisionColumn(Division mainDivision) {
+    public ColumnDivision(DivisionStep mainDivision) {
         this.mainDivision = mainDivision;
         this.listDivisions = new ArrayList<>();
     }
 
-    public Division getMainDivision() {
+    public DivisionStep getMainDivision() {
         return mainDivision;
     }
 
-    public List<Division> getListDivisions() {
+    public List<DivisionStep> getListDivisions() {
         return listDivisions;
     }
 
-    void createColumn() {
+    public void createColumn() {
         int intermediateRemainder = this.mainDivision.getX();
         int y = this.mainDivision.getY();
         int remainder = this.mainDivision.getRemainder();
 
         while (intermediateRemainder != remainder) {
             int nextDividend = takeNextDivident(intermediateRemainder, y);
-            Division d = new Division(nextDividend, y);
+            DivisionStep d = new DivisionStep(nextDividend, y);
             this.listDivisions.add(d);
             intermediateRemainder = takeIntermediateRemainder(intermediateRemainder, d);
         }
@@ -49,14 +49,14 @@ public class DivisionColumn {
         return result;
     }
 
-    private int takeIntermediateRemainder(int x, Division d) {
+    private int takeIntermediateRemainder(int x, DivisionStep d) {
 
-        String result = (Integer.toString(x)).substring(lengthInt(d.getX()), lengthInt(x));
+        String result = (Integer.toString(x)).substring(calculateLength(d.getX()), calculateLength(x));
         result = d.getRemainder() + result;
         return Integer.parseInt(result);
     }
 
-    private int lengthInt(int x) {
+    private int calculateLength(int x) {
         return Integer.toString(x).length();
     }
 
