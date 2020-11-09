@@ -1,35 +1,39 @@
 package ru.bolgov.task4;
 
+import static ru.bolgov.task4.DivisionHelper.calculateLength;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ColumnDivision {
-    private final DivisionStep mainDivision;
-    private final List<DivisionStep> listDivisions;
+    private final Division mainDivision;
+    private final List<Integer[]> listDivisions;
 
-    public ColumnDivision(DivisionStep mainDivision) {
+    public ColumnDivision(Division mainDivision) {
         this.mainDivision = mainDivision;
         this.listDivisions = new ArrayList<>();
     }
 
-    public DivisionStep getMainDivision() {
+    public Division getMainDivision() {
         return mainDivision;
     }
 
-    public List<DivisionStep> getListDivisions() {
+    public List<Integer[]> getListDivisions() {
         return listDivisions;
     }
 
     public void createColumn() {
-        int intermediateRemainder = this.mainDivision.getX();
+        int remainderOfMainDividend = this.mainDivision.getX();
         int y = this.mainDivision.getY();
         int remainder = this.mainDivision.getRemainder();
 
-        while (intermediateRemainder != remainder) {
-            int nextDividend = takeNextDivident(intermediateRemainder, y);
-            DivisionStep d = new DivisionStep(nextDividend, y);
-            this.listDivisions.add(d);
-            intermediateRemainder = takeIntermediateRemainder(intermediateRemainder, d);
+        while (remainderOfMainDividend != remainder) {
+            int nextDividend = takeNextDivident(remainderOfMainDividend, y);
+            int nextResult = mainDivision.getResult(nextDividend, y);
+            int nextRemainder = mainDivision.getRemainder(nextDividend, y);
+
+            this.listDivisions.add(new Integer[] { nextDividend, y, nextResult, nextRemainder });
+            remainderOfMainDividend = takeIntermediateRemainder(remainderOfMainDividend, nextDividend, nextRemainder);
         }
 
     }
@@ -49,15 +53,13 @@ public class ColumnDivision {
         return result;
     }
 
-    private int takeIntermediateRemainder(int x, DivisionStep d) {
+    private int takeIntermediateRemainder(int remainderOfMainDividend, int nextDividend, int nextRemainder) {
+        StringBuilder result = new StringBuilder();
+        result.append(Integer.toString(nextRemainder)).append(Integer.toString(remainderOfMainDividend)
+                .substring(calculateLength(nextDividend), calculateLength(remainderOfMainDividend)));
 
-        String result = (Integer.toString(x)).substring(calculateLength(d.getX()), calculateLength(x));
-        result = d.getRemainder() + result;
-        return Integer.parseInt(result);
+        return Integer.parseInt(result.toString());
     }
 
-    private int calculateLength(int x) {
-        return Integer.toString(x).length();
-    }
 
 }

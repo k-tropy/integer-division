@@ -14,7 +14,7 @@ public class MainClass {
         int y = Integer.parseInt(reader.readLine());
         reader.close();
 
-        DivisionStep division = new DivisionStep(x, y);
+        Division division = new Division(x, y);
         System.out.println(division.toString());
 
     }

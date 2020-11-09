@@ -1,10 +1,8 @@
 package ru.bolgov.task4;
 
-public class DivisionStep {
+public class Division {
     private int x;
     private int y;
-    private int intResult;
-    private int remainder;
 
     public int getX() {
         return x;
@@ -14,15 +12,7 @@ public class DivisionStep {
         return y;
     }
 
-    public int getIntResult() {
-        return intResult;
-    }
-
-    public int getRemainder() {
-        return remainder;
-    }
-
-    public DivisionStep(int x, int y) {
+    public Division(int x, int y) {
         if (0 == y) {
             throw new IllegalArgumentException("Divisor can`t be zero");
         }
@@ -34,15 +24,21 @@ public class DivisionStep {
         }
         this.x = x;
         this.y = y;
-        this.intResult = this.takeResult(x, y);
-        this.remainder = this.takeRemainder(x, y);
     }
 
-    private int takeResult(int x, int y) {
+    public int getResult() {
+        return this.x / this.y;
+    }
+    
+    public int getResult(int x, int y) {
         return x / y;
     }
-
-    private int takeRemainder(int x, int y) {
+ 
+    public int getRemainder() {
+        return this.x % this.y;
+    }
+    
+    public int getRemainder(int x, int y) {
         return x % y;
     }
 

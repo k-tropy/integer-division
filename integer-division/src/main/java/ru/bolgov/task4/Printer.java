@@ -1,5 +1,7 @@
 package ru.bolgov.task4;
 
+import static ru.bolgov.task4.DivisionHelper.*;
+
 public class Printer {
 
     public String buildResultString(ColumnDivision dc) {
@@ -12,11 +14,11 @@ public class Printer {
     }
 
     private String buildSecondThirdStepString(ColumnDivision dc) {
-        int widthResult = calculateLength(dc.getMainDivision().getIntResult());
+        int widthResult = calculateLength(dc.getMainDivision().getResult());
         int widthDividend = calculateLength(dc.getMainDivision().getX());
 
         StringBuilder resultBuilder = new StringBuilder();
-        DivisionStep d = dc.getListDivisions().get(0);
+        Integer[] d = dc.getListDivisions().get(0);
         int intPart = takeIntPart(d);
 
         resultBuilder.append(" ")
@@ -30,7 +32,7 @@ public class Printer {
                      .append(createDashes(calculateLength(intPart)))
                      .append(createGaps(widthDividend - calculateLength(intPart)))
                      .append("|")
-                     .append(dc.getMainDivision().getIntResult())
+                     .append(dc.getMainDivision().getResult())
                      .append("\n");
 
         return resultBuilder.toString();
@@ -41,7 +43,7 @@ public class Printer {
         int indent = 0;
         int count = 0;
 
-        for (DivisionStep d : dc.getListDivisions()) {
+        for (Integer[] d : dc.getListDivisions()) {
 
             if (0 == count) {
                 indent = moveIndentForSubtractedPart(d, indent);
@@ -52,7 +54,7 @@ public class Printer {
 
             resultBuilder.append(createGaps(indent))
                          .append("_")
-                         .append(d.getX())
+                         .append(d[0])
                          .append("\n");
             indent = moveIndentForSubtractedPart(d, indent);
             resultBuilder.append(createGaps(indent))
@@ -74,12 +76,8 @@ public class Printer {
         return createGaps(indent + 1) + dc.getMainDivision().getRemainder();
     }
 
-    private int calculateLength(int x) {
-        return Integer.toString(x).length();
-    }
-
-    private int takeIntPart(DivisionStep d) {
-        return d.getY() * d.getIntResult();
+    private int takeIntPart(Integer [] d) {
+        return d[1] * d[2];
     }
 
     private String createGaps(int n) {
@@ -90,14 +88,14 @@ public class Printer {
         return String.format("%" + n + "s", "").replace(" ", "-");
     }
 
-    private int moveIndentForSubtractedPart(DivisionStep d, int indent) {
-        return (indent + calculateLength(d.getX()) - calculateLength(takeIntPart(d)));
+    private int moveIndentForSubtractedPart(Integer[] d, int indent) {
+        return (indent + calculateLength(d[0]) - calculateLength(takeIntPart(d)));
     }
 
-    private int takeIndentNextDivisionStep(DivisionStep d, int indent) {
+    private int takeIndentNextDivisionStep(Integer[] d, int indent) {
         indent += calculateLength(takeIntPart(d));
-        if (0 != d.getRemainder()) {
-            indent -= calculateLength(d.getRemainder());
+        if (0 != d[3]) {
+            indent -= calculateLength(d[3]);
         }
         return indent;
     }
