@@ -1,16 +1,20 @@
 package ru.bolgov.task4;
 
 public class Division {
-    private int x;
-    private int y;
+    private int dividend;
+    private int divisor;
+    private int result;
+    private int remainder;
 
-    public int getX() {
-        return x;
+    public int getDividend() {
+        return dividend;
     }
 
-    public int getY() {
-        return y;
+    public int getDivisor() {
+        return divisor;
     }
+    
+    
 
     public Division(int x, int y) {
         if (0 == y) {
@@ -22,12 +26,14 @@ public class Division {
         if (x < y) {
             throw new IllegalArgumentException("The dividend must be greater than the divisor");
         }
-        this.x = x;
-        this.y = y;
+        this.dividend = x;
+        this.divisor = y;
+        this.result = getResult(x,y);
+        this.remainder = getRemainder(x,y);
     }
 
     public int getResult() {
-        return this.x / this.y;
+        return this.result;
     }
     
     public int getResult(int x, int y) {
@@ -35,7 +41,7 @@ public class Division {
     }
  
     public int getRemainder() {
-        return this.x % this.y;
+        return this.remainder;
     }
     
     public int getRemainder(int x, int y) {

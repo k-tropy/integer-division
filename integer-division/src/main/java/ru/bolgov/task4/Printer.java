@@ -9,13 +9,13 @@ public class Printer {
     }
 
     private String buildFirstStepString(ColumnDivision dc) {
-        return String.format("_%d|%d", dc.getMainDivision().getX(), dc.getMainDivision().getY()) + "\n";
+        return String.format("_%d|%d", dc.getMainDivision().getDividend(), dc.getMainDivision().getDivisor()) + "\n";
 
     }
 
     private String buildSecondThirdStepString(ColumnDivision dc) {
         int widthResult = calculateLength(dc.getMainDivision().getResult());
-        int widthDividend = calculateLength(dc.getMainDivision().getX());
+        int widthDividend = calculateLength(dc.getMainDivision().getDividend());
 
         StringBuilder resultBuilder = new StringBuilder();
         Integer[] d = dc.getListDivisions().get(0);

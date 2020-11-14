@@ -23,8 +23,8 @@ public class ColumnDivision {
     }
 
     public void createColumn() {
-        int remainderOfMainDividend = this.mainDivision.getX();
-        int y = this.mainDivision.getY();
+        int remainderOfMainDividend = this.mainDivision.getDividend();
+        int y = this.mainDivision.getDivisor();
         int remainder = this.mainDivision.getRemainder();
 
         while (remainderOfMainDividend != remainder) {

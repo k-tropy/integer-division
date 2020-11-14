@@ -38,8 +38,8 @@ public class PrinterTest {
         listDivisions.add(new Integer[] { 874, 874, 1, 0 });
         listDivisions.add(new Integer[] { 3251, 874, 3, 629 });
 
-        when(division.getX()).thenReturn(8743251);
-        when(division.getY()).thenReturn(874);
+        when(division.getDividend()).thenReturn(8743251);
+        when(division.getDivisor()).thenReturn(874);
         when(division.getResult()).thenReturn(10003);
         when(division.getRemainder()).thenReturn(629);
 
@@ -61,8 +61,8 @@ public class PrinterTest {
         listDivisions.add(new Integer[] { 5, 1, 5, 0 });
         listDivisions.add(new Integer[] { 1, 1, 1, 0 });
 
-        when(division.getX()).thenReturn(8743251);
-        when(division.getY()).thenReturn(1);
+        when(division.getDividend()).thenReturn(8743251);
+        when(division.getDivisor()).thenReturn(1);
         when(division.getResult()).thenReturn(8743251);
         when(division.getRemainder()).thenReturn(0);
 
@@ -85,8 +85,8 @@ public class PrinterTest {
         listDivisions.add(new Integer[] { 32, 5, 6, 2 });
         listDivisions.add(new Integer[] { 25, 5, 5, 0 });
 
-        when(division.getX()).thenReturn(8743251);
-        when(division.getY()).thenReturn(5);
+        when(division.getDividend()).thenReturn(8743251);
+        when(division.getDivisor()).thenReturn(5);
         when(division.getResult()).thenReturn(1748650);
         when(division.getRemainder()).thenReturn(1);
 
@@ -110,8 +110,8 @@ public class PrinterTest {
         listDivisions.add(new Integer[] { 375, 55, 6, 45 });
         listDivisions.add(new Integer[] { 451, 55, 8, 11 });
 
-        when(division.getX()).thenReturn(8743251);
-        when(division.getY()).thenReturn(55);
+        when(division.getDividend()).thenReturn(8743251);
+        when(division.getDivisor()).thenReturn(55);
         when(division.getResult()).thenReturn(158968);
         when(division.getRemainder()).thenReturn(11);
 
@@ -130,8 +130,8 @@ public class PrinterTest {
         listDivisions = new ArrayList<Integer[]>();
         listDivisions.add(new Integer[] { 8743251, 8743251, 1, 0 });
 
-        when(division.getX()).thenReturn(8743251);
-        when(division.getY()).thenReturn(8743251);
+        when(division.getDividend()).thenReturn(8743251);
+        when(division.getDivisor()).thenReturn(8743251);
         when(division.getResult()).thenReturn(1);
         when(division.getRemainder()).thenReturn(0);
 

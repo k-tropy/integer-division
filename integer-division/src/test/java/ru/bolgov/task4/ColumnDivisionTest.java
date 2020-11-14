@@ -23,8 +23,8 @@ public class ColumnDivisionTest {
     @BeforeAll
     public static void init() {
         mainDivision = mock(Division.class);
-        when(mainDivision.getX()).thenReturn(96545654);
-        when(mainDivision.getY()).thenReturn(545);
+        when(mainDivision.getDividend()).thenReturn(96545654);
+        when(mainDivision.getDivisor()).thenReturn(545);
         when(mainDivision.getResult(anyInt(), anyInt())).thenAnswer(new Answer<Integer>() {
             public Integer answer(InvocationOnMock invocation) throws Throwable {
                 return (int) invocation.getArgument(0) / (int) invocation.getArgument(1);
