@@ -3,8 +3,6 @@ package ru.bolgov.task4;
 public class Division {
     private int dividend;
     private int divisor;
-    private int result;
-    private int remainder;
 
     public int getDividend() {
         return dividend;
@@ -13,8 +11,6 @@ public class Division {
     public int getDivisor() {
         return divisor;
     }
-    
-    
 
     public Division(int x, int y) {
         if (0 == y) {
@@ -28,22 +24,20 @@ public class Division {
         }
         this.dividend = x;
         this.divisor = y;
-        this.result = getResult(x,y);
-        this.remainder = getRemainder(x,y);
     }
 
     public int getResult() {
-        return this.result;
+        return this.dividend / this.divisor;
     }
-    
+
     public int getResult(int x, int y) {
         return x / y;
     }
- 
+
     public int getRemainder() {
-        return this.remainder;
+        return this.dividend % this.divisor;
     }
-    
+
     public int getRemainder(int x, int y) {
         return x % y;
     }
